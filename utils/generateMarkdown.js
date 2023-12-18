@@ -14,7 +14,37 @@ function renderLicenseSection(license) {}
 function generateMarkdown(data) {
   return `# ${data.title}
 
-`;
+## Description
+${data.desc}
+
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributions](#contributions)
+- [Testing](#testing)
+- [License](#license)
+- [Questions](#questions)
+
+## Installation
+${data.install}
+
+## Usage
+${data.usage}
+
+## Contributions
+${data.contr}
+
+## Testing
+${data.test}
+
+## License
+${renderLicenseBadge(data.license)}
+${renderLicenseLink(data.license)}
+${renderLicenseSection(data.license)}
+
+## Questions
+![Github](https://github.com/${data.username})
+Email: ${data.email}`;
 }
 
 module.exports = generateMarkdown;

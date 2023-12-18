@@ -1,6 +1,8 @@
 // TODO: Include packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
+const generateMarkdown = require('./utils/generateMarkdown');
+
 // TODO: Create an array of questions for user input
 const questions = ["What is the title of your project?", 
                 "Please enter a description of your project.",
@@ -53,6 +55,18 @@ function init() {
             {
                 type: 'list',
                 message: questions[6],
+                choices: ["Apache License 2.0",
+                "GNU General Public License v3.0",
+                "MIT License",
+                "BSD 2-Clause \"Simplified\" License",
+                "BSD 3-Clause \"New\" or \"Revised\" License",
+                "Boost Software License 1.0",
+                "Creative Commons Zero v1.0 Universal",
+                "Eclipse Public License 2.0",
+                "GNU Affero General Public License v3.0",
+                "GNU Lesser General Public License v2.1",
+                "Mozilla Public License 2.0",
+                "The Unlicense"],
                 name: 'license',
             },
             {
@@ -67,10 +81,10 @@ function init() {
             },
         ])
         .then((response) => {
-            // const newAnswers = JSON.stringify(response);
+            const newMarkdown = generateMarkdown(response);
 
-            // fs.writeFile('answers.json', newAnswers, (err) =>
-            //     err ? console.error(err) : console.log("Answers Recorded."))
+            fs.writeFile('README.md', newMarkdown, (err) =>
+                err ? console.error(err) : console.log("Your README file is ready!"))
         });
 }
 
